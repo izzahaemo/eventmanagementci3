@@ -1,11 +1,4 @@
 .DS_Store
-application/config/
-!application/config/config.php
-
-application/config/
-!application/config/database.php
-application/cache/
-!application/cache/index.html
 
 application/logs/
 !application/logs/index.html
