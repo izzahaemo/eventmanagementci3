@@ -136,7 +136,7 @@ class Admin extends CI_Controller
             $this->email->from('emapp.no.reply@gmail.com', 'Event Management APP');
             $this->email->to($edit_email);
             $this->email->subject('Aktivasi Akun Event Management APP');
-            $this->email->message("$b $name<br>Akun Anda sudah di Aktifkan </br><br><br> Klik <strong><a href='http://roro20.masuk.id/' target='_blank' rel='noopener'>belum ada :v</a></strong> Untuk masuk Ke Aplikasi<br><br>Terima kasih<br><br>");
+            $this->email->message("$b $name<br>Akun Anda sudah di Aktifkan </br><br><br> Klik <strong><a href='http://localhost/eventmanagementci3' target='_blank' rel='noopener'>Disini</a></strong> Untuk masuk Ke Aplikasi<br><br>Terima kasih<br><br>");
             $this->email->send();
         }
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">

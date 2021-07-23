@@ -56,12 +56,12 @@
 
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h6 class="m-0 font-weight-bold text-primary">Data Schedule Event <?= $event['nama'] ?></h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data Event Schedule <?= $event['nama'] ?></h6>
                 <a href="<?= base_url('schedule/printscheduleo/') . $idevent ?>" class="btn btn-success btn-icon-split ">
                     <span class="icon text-white-50">
                         <i class="fas fa-print"></i>
                     </span>
-                    <span class="text">Print Data Schedule Event</span>
+                    <span class="text">Print Data Event Schedule</span>
                 </a>
             </div>
         </div>
@@ -130,7 +130,7 @@ foreach ($schedule as $s) :
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="edit<?= $s['id']; ?>Label">Edit Data Schedule <?= $s['schedule']; ?></h5>
+                    <h5 class="modal-title" id="edit<?= $s['id']; ?>Label">Edit Data Event Schedule <?= $s['schedule']; ?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
@@ -175,14 +175,14 @@ foreach ($schedule as $s) :
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteLabel">Hapus Schedule</h5>
+                    <h5 class="modal-title" id="deleteLabel">Hapus Event Schedule</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
                 <form action="<?= base_url('schedule/deletescheduleo/' . $idevent) ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-                            <h5>Anda Yakin Hapus Schedule Event <?= $s['schedule']; ?> ?</h5>
+                            <h5>Anda Yakin Hapus Event Schedule <?= $s['schedule']; ?> ?</h5>
                         </div>
                     </div>
                     <div class="modal-footer">

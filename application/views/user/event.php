@@ -6,19 +6,22 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?= base_url('user'); ?>"><i class="fas fa-fw fa-home"></i></a></li>
-            <li class="breadcrumb-item"><a href="<?= base_url('user/event/') ?>"><?= $titlemenu ?></a></li>
             <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
         </ol>
     </nav>
 
+    <div class="row">
+        <?= $this->session->flashdata('message'); ?>
+    </div>
+
     <div class="row d-flex justify-content-center">
         <div class="col-md-3 mb-4">
-            <div class="card border-bottom-primary shadow h-100 py-2">
+            <div class="card border-bottom-success shadow h-100 py-2">
                 <div class="card-body">
                     <a href="" data-toggle="modal" data-target="#buat">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class=" font-weight-bold text-primary text-uppercase mb-1">Buat Event Baru</div>
+                                <div class=" font-weight-bold text-success text-uppercase mb-1">Buat Event Baru</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                             </div>
                             <div class="col-auto">
@@ -143,15 +146,23 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label">Event Code</label>
+                            <label for="" class="col-sm-2 col-form-label">Code Member</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="eventcode" name="eventcode" value="<?= set_value('eventcode'); ?>" required>
+                                <input type="text" class="form-control" id="codeanggota" name="codeanggota" value="<?= set_value('codeanggota'); ?>" required>
+                                <div id="no_telp" class="form-text">Code Untuk Menambahkan Anggota (Dilarang Menggunakan Spasi)</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Code Feedback</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="codefeedback" name="codefeedback" value="<?= set_value('codefeedback'); ?>" required>
+                                <div id="no_telp" class="form-text">Code Untuk Menambahkan Feedback (Jangan Menggunakan Spasi)</div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Buat</button>
+                        <button type="submit" class="btn btn-success">Buat</button>
                     </div>
                 </form>
             </div>
@@ -220,6 +231,20 @@
                             <label for="" class="col-sm-2 col-form-label">Budget</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="budget" name="budget" value="<?= ($a['budget']); ?>" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Code Member</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="codeanggota" name="codeanggota" value="<?= ($a['codeanggota']); ?>" required>
+                                <div id="no_telp" class="form-text">Code Untuk Menambahkan Anggota (Jangan Menggunakan Spasi)</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Code Feedback</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="codefeedback" name="codefeedback" value="<?= ($a['codefeedback']); ?>" required>
+                                <div id="no_telp" class="form-text">Code Untuk Menambahkan Feedback (Jangan Menggunakan Spasi)</div>
                             </div>
                         </div>
                     </div>

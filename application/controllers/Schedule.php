@@ -34,19 +34,19 @@ class Schedule extends CI_Controller
         $data['event'] = $this->m_event->show_event();
         if ($id == 1) {
             $data['url'] = 'buat';
-            $data['title'] = 'Schedule Event';
+            $data['title'] = 'Event Schedule';
             $data['idview'] = $id;
         } elseif ($id == 2) {
             $data['url'] = 'atur';
-            $data['title'] = 'Schedule Mahasiswa';
+            $data['title'] = 'Member Schedule';
             $data['idview'] = $id;
         } elseif ($id == 3) {
             $data['url'] = 'generate';
-            $data['title'] = 'Generate Schedule';
+            $data['title'] = 'Generate Plotting Schedule';
             $data['idview'] = $id;
         } elseif ($id == 4) {
             $data['url'] = 'lihat';
-            $data['title'] = 'Lihat Schedule';
+            $data['title'] = 'Plot Schedule';
             $data['idview'] = $id;
         }
         $this->load->view("templates/header", $data);
@@ -60,7 +60,7 @@ class Schedule extends CI_Controller
     {
         check_event($id);
         $data['titlemenu'] = 'Schedule';
-        $data['title'] = 'Schedule Event';
+        $data['title'] = 'Event Schedule';
         $data['user'] = $this->m_user->userone();
         $data['idevent'] = $id;
         $data['schedule'] = $this->m_schedule->schedule_on($id);
@@ -77,7 +77,7 @@ class Schedule extends CI_Controller
     {
         check_event($id);
         $data['titlemenu'] = 'Schedule';
-        $data['title'] = 'Schedule Event';
+        $data['title'] = 'Event Schedule';
         $data['user'] = $this->m_user->userone();
         $data['event'] = $this->m_event->eventone($id);
         $data['idevent'] = $id;
@@ -115,7 +115,7 @@ class Schedule extends CI_Controller
         ];
         $this->m_schedule->editscheduleo($idschedule, $isinya);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Data Schedule Event Berhasil Di Perbarui</div>');
+            Data Event Schedule Berhasil Di Perbarui</div>');
         redirect('schedule/buat/' . $id);
     }
 
@@ -125,7 +125,7 @@ class Schedule extends CI_Controller
         $ids = $this->input->post('ids');
         $this->m_schedule->deletescheduleo($ids);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Data Schedule Event Berhasil Di Hapus </div>');
+            Data Event Schedule Berhasil Di Hapus </div>');
         redirect('schedule/buat/' . $id);
     }
 
@@ -141,10 +141,11 @@ class Schedule extends CI_Controller
     {
         check_event($id);
         $data['titlemenu'] = 'Schedule';
-        $data['title'] = 'Schedule Mahasiswa';
+        $data['title'] = 'Member Schedule';
         $data['user'] = $this->m_user->userone();
         $data['event'] = $this->m_event->eventone($id);
-        $data['mhs'] = $this->m_schedule->mhsevent($id);
+        //$data['mhs'] = $this->m_schedule->mhsevent($id);
+        $data['mhs'] = $this->m_schedule->data_mhs();
         $data['divisi'] = $this->m_event->alldivisi();
         $data['idevent'] = $id;
         $data['url'] = 2;
@@ -159,7 +160,7 @@ class Schedule extends CI_Controller
     {
         check_event($id);
         $data['titlemenu'] = 'Schedule';
-        $data['title'] = 'Schedule Mahasiswa';
+        $data['title'] = 'Member Schedule';
         $data['user'] = $this->m_user->userone();
         $data['event'] = $this->m_event->eventone($id);
         $data['divisi'] = $this->m_event->alldivisi();
@@ -207,7 +208,7 @@ class Schedule extends CI_Controller
             ];
             $this->m_schedule->addmhs($isinya);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                Data Mahasiswa Berhasil Di Input! </div>');
+                Data Member Berhasil Di Input! </div>');
             redirect('schedule/addmhs/' . $id);
         }
     }
@@ -224,7 +225,7 @@ class Schedule extends CI_Controller
         ];
         $this->m_schedule->updatemhs($idmhs, $isinya);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Data Mahasiswa berhasil di perbarui</div>');
+            Data Member berhasil di perbarui</div>');
         redirect('schedule/atur/' . $id);
     }
 
@@ -234,7 +235,7 @@ class Schedule extends CI_Controller
     {
         check_event($id);
         $data['titlemenu'] = 'Schedule';
-        $data['title'] = 'Schedule Mahasiswa';
+        $data['title'] = 'Member Schedule';
         $data['user'] = $this->m_user->userone();
         $data['event'] = $this->m_event->eventone($id);
         $data['divisi'] = $this->m_event->alldivisi();
@@ -275,7 +276,7 @@ class Schedule extends CI_Controller
             ];
             $this->m_schedule->updatemhs($idmhs, $isinya);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                Data Mahasiswa Berhasil Di Update! </div>');
+                Data Member Berhasil Di Update! </div>');
             redirect('schedule/atur/' . $id);
         }
     }
@@ -302,7 +303,7 @@ class Schedule extends CI_Controller
     {
         check_event($id);
         $data['titlemenu'] = 'Schedule';
-        $data['title'] = 'Generate Schedule';
+        $data['title'] = 'Generate Plotting Schedule';
         $data['user'] = $this->m_user->userone();
         $data['schedule'] = $this->m_schedule->schedule_temp();
         $data['idevent'] = $id;
@@ -319,7 +320,7 @@ class Schedule extends CI_Controller
     {
         check_event($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                Pembuatan Schedule Sementara berhasil</div>');
+                Plotting Schedule Sementara Berhasil</div>');
         redirect('schedule/sementara/' . $id);
     }
 
@@ -327,7 +328,7 @@ class Schedule extends CI_Controller
     {
         check_event($id);
         $data['titlemenu'] = 'Schedule';
-        $data['title'] = 'Generate Schedule';
+        $data['title'] = 'Generate Plotting Schedule';
         $data['user'] = $this->m_user->userone();
         $data['schedule'] = $this->m_schedule->schedule_temp();
         $data['data_mhs'] = $this->m_schedule->data_mhs();
@@ -397,7 +398,7 @@ class Schedule extends CI_Controller
     {
         check_event($id);
         $data['titlemenu'] = 'Schedule';
-        $data['title'] = 'Lihat Schedule';
+        $data['title'] = 'Plot Schedule';
         $data['user'] = $this->m_user->userone();
         $data['event'] = $this->m_event->eventone($id);
         $data['schedule'] = $this->m_schedule->schedule_perm($id);

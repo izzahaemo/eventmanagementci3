@@ -52,6 +52,14 @@ class Feedback extends CI_Controller
         $data['komentar'] = $this->m_feedback->onekomentar($id);
         $data['feedback'] = $this->m_feedback->onefeedback($id);
         $data['idevent'] = $id;
+        $data['total'] = 0;
+        $data['ada'] = false;
+
+        foreach ($data['komentar'] as $k) :
+            $data['ada'] = true;
+            $data['total'] = $data['total'] + 1;
+        endforeach;
+
         $this->load->view("templates/header", $data);
         $this->load->view("templates/sidebar", $data);
         $this->load->view("templates/topbar", $data);

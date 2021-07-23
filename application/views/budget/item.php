@@ -91,13 +91,6 @@
                 </table>
             </div>
         </div>
-        <div class="card-body">
-            <div class="form-group row">
-                <a href="http://127.0.0.1:5000/buat" class="btn btn-primary btn-lg btn-block">
-                    Buat
-                </a>
-            </div>
-        </div>
     </div>
 
 

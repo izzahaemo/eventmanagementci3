@@ -6,7 +6,6 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?= base_url('user'); ?>"><i class="fas fa-fw fa-home"></i></a></li>
-            <li class="breadcrumb-item"><a href="<?= base_url('budget/view/') . $id; ?>"><?= $titlemenu ?></a></li>
             <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
         </ol>
     </nav>
@@ -15,7 +14,7 @@
         <?php foreach ($event as $a) :
             if ($a['idu'] == $user['id']) { ?>
                 <div class="col-xl-6 col-lg-7">
-                    <a href="http://127.0.0.1:5000/feedback/<?= $a['id']; ?>" ?>
+                    <a href="http://127.0.0.1:5003/feedback/<?= $a['id']; ?>" ?>
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">

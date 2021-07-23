@@ -172,7 +172,9 @@ class User extends CI_Controller
             'tempat' => $this->input->post('tempat'),
             'inorout' => $this->input->post('inorout'),
             'target' => $this->input->post('target'),
-            'budget' => $this->input->post('budget')
+            'budget' => $this->input->post('budget'),
+            'codeanggota' => $this->input->post('codeanggota'),
+            'codefeedback' => $this->input->post('codefeedback')
         ];
         $this->m_event->editevent($id, $isinya);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">

@@ -13,7 +13,9 @@
 
     <?php $totalmhs = 0;
     foreach ($mhs as $m) :
-        $totalmhs = $totalmhs + 1;
+        if ($m['ide'] == $idevent) {
+            $totalmhs = $totalmhs + 1;
+        }
     endforeach; ?>
 
     <!--Main Content -->
@@ -23,7 +25,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-md font-weight-bold text-primary text-uppercase mb-1">Total Data Mahasiswa</div>
+                            <div class="text-md font-weight-bold text-primary text-uppercase mb-1">Total Data Member</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $totalmhs ?></div>
                         </div>
                         <div class="col-auto">
@@ -41,8 +43,11 @@
 
             foreach ($mhs as $m) :
 
-                if ($m['idd'] == $d['id']) {
-                    $totaladivisi = $totaladivisi + 1;
+                if ($m['ide'] == $idevent) {
+
+                    if ($m['idd'] == $d['id']) {
+                        $totaladivisi = $totaladivisi + 1;
+                    }
                 }
             endforeach;
         ?>
@@ -69,12 +74,12 @@
 
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h6 class="m-0 font-weight-bold text-primary">Data Mahasiswa <?= $event['nama'] ?></h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data Member <?= $event['nama'] ?></h6>
                 <a href="<?= base_url('schedule/printmhs/') . $idevent ?>" class="btn btn-success btn-icon-split ">
                     <span class="icon text-white-50">
                         <i class="fas fa-print"></i>
                     </span>
-                    <span class="text">Print Data Mahasiswa</span>
+                    <span class="text">Print Data Member</span>
                 </a>
             </div>
         </div>
@@ -103,66 +108,69 @@
                     </tfoot>
                     <tbody>
                         <?php $i = 1; ?>
-                        <?php foreach ($mhs as $a) : ?>
-                            <tr>
-                                <td><?= $i ?></td>
-                                <td><?= $a['name']; ?></td>
-                                <td>
-                                    <?php
-                                    $handphone = $a['no_telp'];
-                                    // menghitung jumlah digit nomor handphone tanpa kode negara (+62)
-                                    $jumlah_digit_handphone = strlen($handphone);
-                                    // nomor handphone yang ditampilkan jika berjumlah 9 digit
-                                    if ($jumlah_digit_handphone == 9) {
-                                        $tampil_handphone = "+62 " . substr($handphone, 0, 3) . "-" . substr($handphone, 3, 3) . "-" . substr($handphone, 6, 3);
-                                    }
-                                    // nomor handphone yang ditampilkan jika berjumlah 10 digit
-                                    if ($jumlah_digit_handphone == 10) {
-                                        $tampil_handphone = "+62 " . substr($handphone, 3, 3) . "-" . substr($handphone, 6, 4) . "-" . substr($handphone, 10, 3);
-                                    }
-                                    // nomor handphone yang ditampilkan jika berjumlah 11 digit
-                                    if ($jumlah_digit_handphone == 11) {
-                                        $tampil_handphone = "+62 " . substr($handphone, 0, 3) . "-" . substr($handphone, 3, 4) . "-" . substr($handphone, 7, 3);
-                                    }
-                                    // nomor handphone yang ditampilkan jika berjumlah 12 digit
-                                    if ($jumlah_digit_handphone == 12) {
-                                        $tampil_handphone = "+62 " . substr($handphone, 3, 3) . "-" . substr($handphone, 6, 4) . "-" . substr($handphone, 10, 5);
-                                    }
-                                    if ($jumlah_digit_handphone < 9) {
-                                        $tampil_handphone = $handphone;
-                                    }
-                                    if ($jumlah_digit_handphone > 12) {
-                                        $tampil_handphone = $handphone;
-                                    }
-                                    ?>
-                                    <?= $tampil_handphone ?>
-                                </td>
-                                <td>
-                                    <?= $a['nama']; ?>
-                                </td>
-                                <td><?= $a['class'] == 0 ? "Belum Diatur" : "Sudah Diatur" ?></td>
-                                <td>
-                                    <a href="" class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#edit1<?= $a['id']; ?>">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-user-edit"></i>
-                                        </span>
-                                        <span class="text">Data</span>
-                                    </a>
-                                    <a href="" class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#edit2<?= $a['id']; ?>">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-calendar-alt"></i>
-                                        </span>
-                                        <span class="text">Jadwal</span>
-                                    </a>
-                                    <a href="" class="btn btn-danger btn-icon-split btn-sm" data-toggle="modal" data-target="#delete<?= $a['id']; ?>">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
-                                        <span class="text">Hapus</span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php $i++; ?>
+                        <?php foreach ($mhs as $a) :
+                            if ($a['ide'] == $idevent) {
+                        ?>
+                                <tr>
+                                    <td><?= $i ?></td>
+                                    <td><?= $a['name']; ?></td>
+                                    <td>
+                                        <?php
+                                        $handphone = $a['no_telp'];
+                                        // menghitung jumlah digit nomor handphone tanpa kode negara (+62)
+                                        $jumlah_digit_handphone = strlen($handphone);
+                                        // nomor handphone yang ditampilkan jika berjumlah 9 digit
+                                        if ($jumlah_digit_handphone == 9) {
+                                            $tampil_handphone = "+62 " . substr($handphone, 0, 3) . "-" . substr($handphone, 3, 3) . "-" . substr($handphone, 6, 3);
+                                        }
+                                        // nomor handphone yang ditampilkan jika berjumlah 10 digit
+                                        if ($jumlah_digit_handphone == 10) {
+                                            $tampil_handphone = "+62 " . substr($handphone, 3, 3) . "-" . substr($handphone, 6, 4) . "-" . substr($handphone, 10, 3);
+                                        }
+                                        // nomor handphone yang ditampilkan jika berjumlah 11 digit
+                                        if ($jumlah_digit_handphone == 11) {
+                                            $tampil_handphone = "+62 " . substr($handphone, 0, 3) . "-" . substr($handphone, 3, 4) . "-" . substr($handphone, 7, 3);
+                                        }
+                                        // nomor handphone yang ditampilkan jika berjumlah 12 digit
+                                        if ($jumlah_digit_handphone == 12) {
+                                            $tampil_handphone = "+62 " . substr($handphone, 3, 3) . "-" . substr($handphone, 6, 4) . "-" . substr($handphone, 10, 5);
+                                        }
+                                        if ($jumlah_digit_handphone < 9) {
+                                            $tampil_handphone = $handphone;
+                                        }
+                                        if ($jumlah_digit_handphone > 12) {
+                                            $tampil_handphone = $handphone;
+                                        }
+                                        ?>
+                                        <?= $tampil_handphone ?>
+                                    </td>
+                                    <td>
+                                        <?= $a['nama']; ?>
+                                    </td>
+                                    <td><?= $a['class'] == 0 ? "Belum Diatur" : "Sudah Diatur" ?></td>
+                                    <td>
+                                        <a href="" class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#edit1<?= $a['id']; ?>">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-user-edit"></i>
+                                            </span>
+                                            <span class="text">Data</span>
+                                        </a>
+                                        <a href="" class="btn btn-info btn-icon-split btn-sm" data-toggle="modal" data-target="#edit2<?= $a['id']; ?>">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </span>
+                                            <span class="text">Jadwal</span>
+                                        </a>
+                                        <a href="" class="btn btn-danger btn-icon-split btn-sm" data-toggle="modal" data-target="#delete<?= $a['id']; ?>">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Hapus</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php $i++;
+                            } ?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -175,7 +183,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-md font-weight-bold text-primary text-uppercase mb-1">Code Tambah Anggota di Event Anda</div>
+                            <div class="text-md font-weight-bold text-primary text-uppercase mb-1">Code Tambah Member di Event Anda</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $event['codeanggota'] ?></div>
                         </div>
                         <div class="col-auto">
@@ -190,7 +198,7 @@
                 <a href="<?= base_url('schedule/addmhs/') . $idevent ?>" class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="h5 mb-0 text-uppercase font-weight-bold text-success">Tambahkan Data Mahasiswa</div>
+                            <div class="h5 mb-0 text-uppercase font-weight-bold text-success">Tambahkan Data Member</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-plus fa-2x text-gray-300"></i>
@@ -215,7 +223,7 @@ foreach ($mhs as $a) :
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="edit<?= $a['id']; ?>Label">Edit Data Mahasiswa <?= $a['name']; ?></h5>
+                    <h5 class="modal-title" id="edit<?= $a['id']; ?>Label">Edit Data Member <?= $a['name']; ?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     </button>
                 </div>

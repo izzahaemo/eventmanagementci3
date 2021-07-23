@@ -134,7 +134,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <a href="http://127.0.0.1:5000/generate/<?= $idevent ?>" class="btn btn-primary ">
+                        <a href="http://127.0.0.1:5001/generate/<?= $idevent ?>" class="btn btn-primary ">
                             Buat
                         </a>
                     </div>

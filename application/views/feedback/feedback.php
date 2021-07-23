@@ -6,28 +6,74 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?= base_url('user'); ?>"><i class="fas fa-fw fa-home"></i></a></li>
-            <li class="breadcrumb-item"><a href="<?= base_url('budget/view/'); ?>"><?= $titlemenu ?> </a></li>
+            <li class="breadcrumb-item"><a href="<?= base_url('feedback/view/1'); ?>"><?= $titlemenu ?> </a></li>
             <li class="breadcrumb-item active" aria-current="page"><?= $title ?> <?= $event['nama'] ?></li>
         </ol>
     </nav>
 
+    <?php
+
+    $positif = $feedback['positif'] / $total * 100;
+    $negatif = $feedback['negatif'] / $total * 100;
+
+    ?>
+
     <!-- Page isi -->
-    <div class="row d-flex justify-content-center">
-        <div class="col-xl-4 col-lg-5">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Summary Feedback</h6>
+    <?php if ($ada == true) { ?>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-4 mb-4">
+                <div class="card border-bottom-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-md font-weight-bold text-success text-uppercase mb-1">Total Feedback Positif</div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="h1 mb-0 mr-3 font-weight-bold text-gray-800"><?= number_format($positif); ?>%</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-pie pt-4">
-                        <canvas id="charttotal"></canvas>
+            </div>
+            <div class="col-xl-4 col-lg-5">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Summary Feedback</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-pie pt-4">
+                            <canvas id="charttotal"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card border-bottom-danger shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-md font-weight-bold text-danger text-uppercase mb-1">Total Feedback Negatif</div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="h1 mb-0 mr-3 font-weight-bold text-gray-800"><?= number_format($negatif); ?>%</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+    <?php } ?>
 
     <div class="card shadow mb-4">
         <?= $this->session->flashdata('message'); ?>
@@ -57,7 +103,8 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php $i = 1 ?>
+                        <?php
+                        $i = 1; ?>
                         <?php foreach ($komentar as $a) : ?>
                             <tr>
                                 <td><?= $i ?></td>
@@ -65,7 +112,8 @@
                                 <td><?= $a['institusi'] ?></td>
                                 <td><?= $a['feedback'] ?></td>
                             </tr>
-                            <?php $i++ ?>
+                            <?php
+                            $i++; ?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -73,6 +121,38 @@
         </div>
     </div>
 
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6 mb-4 ">
+            <div class="card border-bottom-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-md font-weight-bold text-primary text-uppercase mb-1">Code Menambah Feedback di Event Anda</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $event['codefeedback'] ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-code fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4 ">
+            <div class="card border-bottom-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-md font-weight-bold text-primary text-uppercase mb-1">Total Feedback</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comment-dots fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /.container-fluid -->
 
@@ -80,6 +160,8 @@
 <!-- End of Main Content -->
 
 <script src="<?= base_url('assets/'); ?>vendor/chart.js/Chart.js"></script>
+
+
 
 <script>
     Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -91,7 +173,7 @@
         data: {
             labels: ["Positif", "Negatif"],
             datasets: [{
-                data: [<?= $feedback['positif'] ?>, <?= $feedback['negatif'] ?>],
+                data: [<?= $feedback['positif']  ?>, <?= $feedback['negatif']  ?>],
                 backgroundColor: ['#1cc88a', '#f08080'],
                 hoverBackgroundColor: ['#2e59d9', '#17a673'],
                 hoverBorderColor: "rgba(234, 236, 1)",

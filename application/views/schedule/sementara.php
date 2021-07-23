@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="<?= base_url('user'); ?>"><i class="fas fa-fw fa-home"></i></a></li>
             <li class="breadcrumb-item"><a href="<?= base_url('schedule/view/' . $url); ?>"><?= $title ?></a></li>
             <li class="breadcrumb-item"><a href="<?= base_url('schedule/generate/' . $idevent); ?>"><?= $title ?> <?= $event['nama'] ?></a></li>
-            <li class="breadcrumb-item active" aria-current="page">Data Schedule Sementara <?= $event['nama'] ?></li>
+            <li class="breadcrumb-item active" aria-current="page">Plotting Schedule Sementara <?= $event['nama'] ?></li>
         </ol>
     </nav>
 
@@ -54,7 +54,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-md font-weight-bold text-success text-uppercase mb-1">Schedule Terploting Seluruh Divisi</div>
+                            <div class="text-md font-weight-bold text-success text-uppercase mb-1">Schedule Terplotting Seluruh Divisi</div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= number_format($berhasil); ?>%</div>
@@ -80,7 +80,7 @@
         <?= $this->session->flashdata('message'); ?>
 
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Schedule Sementara <?= $event['nama'] ?></h6>
+            <h6 class="m-0 font-weight-bold text-primary">Plotting Schedule Sementara <?= $event['nama'] ?></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -196,7 +196,7 @@
         <div class="card-body">
             <div class="form-group row">
                 <a href="" class="btn btn-primary btn-lg btn-block " data-toggle="modal" data-target="#buat" class="btn btn-primary btn-lg btn-block">
-                    Buat Lagi ?
+                    Plotting ?
                 </a>
             </div>
         </div>
@@ -219,23 +219,23 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="buatLabel">Buat Schedule Baru <?= $event['nama'] ?> </h5>
+                <h5 class="modal-title" id="buatLabel">Plotting Schedule Baru <?= $event['nama'] ?> </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <form action=">" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <h5>Anda yakin membuat Schedule Baru?</h5>
+                        <h5>Anda Yakin Membuat Plotting Schedule Baru?</h5>
                     </div>
                     <div class="form-group">
-                        <h7>Pembuatan Schedule membutuhkan beberapa menit</h7>
+                        <h7>Plotting Schedule membutuhkan beberapa menit</h7>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <a href="http://127.0.0.1:5000/buat/<?= $idevent ?>" class="btn btn-primary ">
-                        Buat
+                    <a href="http://127.0.0.1:5002/buat/<?= $idevent ?>" class="btn btn-primary ">
+                        Plotting
                     </a>
                 </div>
             </form>
@@ -248,14 +248,14 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="simpanLabel">Simpan Schedule Baru <?= $event['nama'] ?> </h5>
+                <h5 class="modal-title" id="simpanLabel">Simpan Plotting Schedule Baru <?= $event['nama'] ?> </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <form action=">" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <h5>Anda yakin menyimpan schedule Baru?</h5>
+                        <h5>Anda Yakin Menyimpan Plotting Schedule Baru?</h5>
                     </div>
                 </div>
                 <div class="modal-footer">

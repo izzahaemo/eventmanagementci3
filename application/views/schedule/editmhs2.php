@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="<?= base_url('user'); ?>"><i class="fas fa-fw fa-home"></i></a></li>
             <li class="breadcrumb-item"><a href="<?= base_url('schedule/view/' . $url); ?>"><?= $title ?></a></li>
             <li class="breadcrumb-item"><a href="<?= base_url('schedule/atur/' . $idevent); ?>"><?= $title ?> <?= $event['nama'] ?></a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit Data Mahasiswa <?= $mhs['name'] ?></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Data Member <?= $mhs['name'] ?></li>
         </ol>
     </nav>
 
@@ -17,7 +17,7 @@
     <div class="card shadow mb-4">
         <?= $this->session->flashdata('message'); ?>
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Edit Data Mahasiswa <?= $mhs['name'] ?></h6>
+            <h6 class="m-0 font-weight-bold text-primary">Edit Data Member <?= $mhs['name'] ?></h6>
         </div>
         <div class="card-body">
             <form action="<?= base_url('schedule/editmhs2/' . $idevent . "/" . $mhs['id']); ?>" method="post" enctype="multipart/form-data">

@@ -27,8 +27,8 @@
     <!-- loping Menu -->
     <?php foreach ($menu as $m) : ?>
         <div class="sidebar-heading">
-            <?php if ($m['menu'] == "Editvote") : ?>
-                Edit Vote
+            <?php if ($m['menu'] == "Generate Plotting Schedule") : ?>
+                Generate Schedule
             <?php elseif ($m['menu'] == "Keluarsurat") : ?>
                 Surat Keluar
             <?php elseif ($m['menu'] == "Templatesurat") : ?>

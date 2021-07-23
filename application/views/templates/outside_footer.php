@@ -3,7 +3,7 @@
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
             <a href="<?= base_url('auth/about'); ?>">
-                <span>Event Management App &copy; by @izzahaemo <?= date('Y'); ?> v. 1.0.0</span>
+                <span>Event Management App &copy; by Surya Izzah Kiki <?= date('Y'); ?> v. 1.0.0</span>
             </a>
         </div>
     </div>

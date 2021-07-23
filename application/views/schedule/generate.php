@@ -19,7 +19,7 @@
         <div class="card-body">
             <div class="form-group row">
                 <a href="" data-toggle="modal" data-target="#buat" class="btn btn-primary btn-lg btn-block">
-                    Buat
+                    Plotting
                 </a>
             </div>
         </div>
@@ -37,23 +37,23 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="buatLabel">Buat Schedule Baru <?= $event['nama'] ?> </h5>
+                <h5 class="modal-title" id="buatLabel">Generate Plotting Schedule <?= $event['nama'] ?> </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <form action=">" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <h5>Anda yakin membuat Schedule Baru?</h5>
+                        <h5>Anda yakin Generate Plotting Schedule ?</h5>
                     </div>
                     <div class="form-group">
-                        <h7>Pembuatan Schedule membutuhkan beberapa menit</h7>
+                        <h7>Plotting Schedule membutuhkan beberapa menit</h7>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <a href="http://127.0.0.1:5000/buat/<?= $idevent ?>" class="btn btn-primary ">
-                        Buat
+                    <a href="http://127.0.0.1:5002/buat/<?= $idevent ?>" class="btn btn-primary ">
+                        Plotting
                     </a>
                 </div>
             </form>
