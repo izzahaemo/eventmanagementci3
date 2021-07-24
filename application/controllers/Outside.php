@@ -72,7 +72,7 @@ class Outside extends CI_Controller
     {
         check_outside2($eventcode);
         $data['event'] = $this->m_event->eventcode2($eventcode);
-        $data['title'] = 'Isi Data Anggota';
+        $data['title'] = 'Isi Feedback';
         $data['eventcode'] = $eventcode;
         $idevent = $data['event']['id'];
 

@@ -11,20 +11,21 @@
         </ol>
     </nav>
 
-    <?php
 
-    $positif = $feedback['positif'] / $total * 100;
-    $negatif = $feedback['negatif'] / $total * 100;
-
-    ?>
 
     <!-- Page isi -->
     <?php if ($ada == true) { ?>
+        <?php
+
+        $positif = $feedback['positif'] / $total * 100;
+        $negatif = $feedback['negatif'] / $total * 100;
+
+        ?>
         <div class="row d-flex justify-content-center">
-            <div class="col-md-4 mb-4">
-                <div class="card border-bottom-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
+            <div class="col-xl-6 mb-4">
+                <div class="card border-bottom-primary shadow h-100 py-2">
+                    <div class="card-body d-flex align-items-start flex-column bd-highlight">
+                        <div class="row no-gutters  align-items-center mb-auto bd-highlight">
                             <div class="col mr-2">
                                 <div class="text-md font-weight-bold text-success text-uppercase mb-1">Total Feedback Positif</div>
                                 <div class="row no-gutters align-items-center">
@@ -36,27 +37,7 @@
                                 <div class="h1 mb-0 mr-3 font-weight-bold text-gray-800"><?= number_format($positif); ?>%</div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-5">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Summary Feedback</h6>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-pie pt-4">
-                            <canvas id="charttotal"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card border-bottom-danger shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
+                        <div class="row no-gutters align-items-center bd-highlight">
                             <div class="col mr-2">
                                 <div class="text-md font-weight-bold text-danger text-uppercase mb-1">Total Feedback Negatif</div>
                                 <div class="row no-gutters align-items-center">
@@ -71,6 +52,21 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xl-6 col-lg-5">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Summary Feedback</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-pie pt-4">
+                            <canvas id="charttotal"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     <?php } ?>
