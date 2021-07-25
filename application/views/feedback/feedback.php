@@ -11,21 +11,20 @@
         </ol>
     </nav>
 
-    <?php
-
-    $positif = $feedback['positif'] / $total * 100;
-    $negatif = $feedback['negatif'] / $total * 100;
-
-    ?>
-
+    
     <!-- Page isi -->
     <?php if ($ada == true) { ?>
         <div class="row d-flex justify-content-center">
+            <?php
+            $positif = $feedback['positif'] / $total * 100;
+            $negatif = $feedback['negatif'] / $total * 100;
+            ?>
             <div class="col-md-4 mb-4">
                 <div class="card border-bottom-success shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
+                                
                                 <div class="text-md font-weight-bold text-success text-uppercase mb-1">Total Feedback Positif</div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">

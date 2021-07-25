@@ -21,6 +21,9 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                <div>
+                    <p>Total Keseluruhan Harus 100%</p>
+                </div>
                 <table class="table table-bordered" id="rab" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                         <tr>

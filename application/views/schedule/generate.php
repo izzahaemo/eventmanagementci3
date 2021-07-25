@@ -17,11 +17,13 @@
             <h6 class="m-0 font-weight-bold text-primary"><?= $title ?> <?= $event['nama'] ?></h6>
         </div>
         <div class="card-body">
-            <div class="form-group row">
-                <a href="" data-toggle="modal" data-target="#buat" class="btn btn-primary btn-lg btn-block">
-                    Plotting
-                </a>
-            </div>
+            <?php if ($bisa == true) { ?>
+                <div class="form-group row">
+                    <a href="" data-toggle="modal" data-target="#buat" class="btn btn-primary btn-lg btn-block">
+                        Plotting
+                    </a>
+                </div>
+            <?php }  ?>
         </div>
     </div>
 
