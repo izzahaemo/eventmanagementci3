@@ -86,13 +86,44 @@ class Auth extends CI_Controller
                 'image' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 2,
-                'is_active' => 0
+                'is_active' => 1
             ];
             //htmlspecialchars($this->input->post('name',true));
             $this->db->insert('user', $data);
+            $a = date("H");
+            if (($a >= 6) && ($a <= 11)) {
+                $b = "Selamat Pagi";
+            } else if (($a >= 11) && ($a <= 15)) {
+                $b = "Selamat Siang";
+            } elseif (($a > 15) && ($a <= 18)) {
+                $b = "Selamat Sore";
+            } else {
+                $b = "Selamat Malam";
+            }
+
+            $config = [
+                'mailtype'  => 'html',
+                'charset'   => 'utf-8',
+                'protocol'  => 'smtp',
+                'smtp_host' => 'smtp.gmail.com',
+                'smtp_user' => 'eventmanagementapp2021@gmail.com',  // Email gmail
+                'smtp_pass'   => 'darklord12345678',  // Password gmail
+                'smtp_crypto' => 'ssl',
+                'smtp_port'   => 465,
+                'crlf'    => "\r\n",
+                'newline' => "\r\n"
+            ];
+            
+            $edit_email =  $this->input->post('email', true);
+            $this->load->library('email', $config);
+            $this->email->from('emapp.no.reply@gmail.com', 'Event Management APP');
+            $this->email->to($edit_email);
+            $this->email->subject('Aktivasi Akun Event Management APP');
+            $this->email->message("$b $name<br>Akun Anda sudah di Aktifkan </br><br><br> Klik <strong><a href='http://localhost:8080/eventmanagementci3' target='_blank' rel='noopener'>Disini</a></strong> Untuk masuk Ke Aplikasi<br><br>Terima kasih<br><br>");
+            $this->email->send();
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-                Akun Berhasil Dibuat, Silahkan Hubungi Admin untuk Aktvasi </div>');
+                Akun Berhasil Dibuat, Silahkan Cek Email dan Folder Spam Untuk Aktivasi </div>');
             redirect('auth');
         }
     }

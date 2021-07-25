@@ -150,13 +150,15 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="codeanggota" name="codeanggota" value="<?= set_value('codeanggota'); ?>" required>
                                 <div id="no_telp" class="form-text">Code Untuk Menambahkan Anggota (Dilarang Menggunakan Spasi)</div>
+                                <div id="no_telp" class="form-text">Contoh : telyufest21</div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="" class="col-sm-2 col-form-label">Code Feedback</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="codefeedback" name="codefeedback" value="<?= set_value('codefeedback'); ?>" required>
-                                <div id="no_telp" class="form-text">Code Untuk Menambahkan Feedback (Jangan Menggunakan Spasi)</div>
+                                <div id="no_telp" class="form-text">Code Untuk Menambahkan Feedback (Jangan Menggunakan Spasi) boleh sama dengan diatas</div>
+                                <div id="no_telp" class="form-text">Contoh : telyufest21</div>
                             </div>
                         </div>
                     </div>

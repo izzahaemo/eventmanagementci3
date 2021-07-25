@@ -305,10 +305,77 @@ class Schedule extends CI_Controller
         $data['titlemenu'] = 'Schedule';
         $data['title'] = 'Generate Plotting Schedule';
         $data['user'] = $this->m_user->userone();
-        $data['schedule'] = $this->m_schedule->schedule_temp();
+        $data['schedule'] = $this->m_schedule->schedule_on($id);
         $data['idevent'] = $id;
         $data['event'] = $this->m_event->eventone($id);
         $data['url'] = 3;
+        $data['data_mhs'] = $this->m_schedule->data_mhs();
+        $schedule = 0;
+        $data['div1'] = 0;
+        $data['div2'] = 0;
+        $data['div3'] = 0;
+        $data['div4'] = 0;
+        $data['div5'] = 0;
+        $data['div6'] = 0;
+        $data['div7'] = 0;
+        $data['bisa'] = true;
+        foreach ($data['schedule'] as $d) :
+            $schedule = 1;
+        endforeach;
+        foreach ($data['data_mhs'] as $m) :
+            if ($m['ide'] == $id) {
+                if ($m['idd'] == 1) {
+                    $data['div1'] = 1;
+                } elseif ($m['idd'] == 2) {
+                    $data['div2'] = 1;
+                } elseif ($m['idd'] == 3) {
+                    $data['div3'] = 1;
+                } elseif ($m['idd'] == 4) {
+                    $data['div4'] = 1;
+                } elseif ($m['idd'] == 5) {
+                    $data['div5'] = 1;
+                } elseif ($m['idd'] == 6) {
+                    $data['div6'] = 1;
+                } elseif ($m['idd'] == 7) {
+                    $data['div7'] = 1;
+                }
+            }
+        endforeach;
+
+        if ($schedule == 0) {
+            $data['bisa'] = false;
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Isi Schedule Terlebih Dahulu</div>');
+        }
+        if ($data['div1'] == 0) {
+            $data['bisa'] = false;
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Tidak Ada Anggota Divisi Acara</div>');
+        } elseif ($data['div2'] == 0) {
+            $data['bisa'] = false;
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Tidak Ada Anggota Divisi Humas</div>');
+        } elseif ($data['div3'] == 0) {
+            $data['bisa'] = false;
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Tidak Ada Anggota Divisi Keamanan</div>');
+        } elseif ($data['div4'] == 0) {
+            $data['bisa'] = false;
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Tidak Ada Anggota Divisi Konsumsi</div>');
+        } elseif ($data['div5'] == 0) {
+            $data['bisa'] = false;
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Tidak Ada Anggota Divisi Logistik</div>');
+        } elseif ($data['div6'] == 0) {
+            $data['bisa'] = false;
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Tidak Ada Anggota Divisi Publikasi</div>');
+        } elseif ($data['div7'] == 0) {
+            $data['bisa'] = false;
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Tidak Ada Anggota Divisi Sponsorship</div>');
+        }
         $this->load->view("templates/header", $data);
         $this->load->view("templates/sidebar", $data);
         $this->load->view("templates/topbar", $data);
