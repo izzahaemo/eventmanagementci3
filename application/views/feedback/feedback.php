@@ -10,9 +10,12 @@
             <li class="breadcrumb-item active" aria-current="page"><?= $title ?> <?= $event['nama'] ?></li>
         </ol>
     </nav>
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 8b6391973bcd4e5904738e46dd02790d17f7cdbd
     <!-- Page isi -->
     <?php if ($ada == true) { ?>
         <?php
@@ -22,11 +25,19 @@
 
         ?>
         <div class="row d-flex justify-content-center">
+<<<<<<< HEAD
+=======
+            <div class="col-md-4 mb-4">
+                <div class="card border-bottom-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+>>>>>>> 8b6391973bcd4e5904738e46dd02790d17f7cdbd
             <div class="col-xl-6 mb-4">
                 <div class="card border-bottom-primary shadow h-100 py-2">
                     <div class="card-body d-flex align-items-start flex-column bd-highlight">
                         <div class="row no-gutters  align-items-center mb-auto bd-highlight">
                             <div class="col mr-2">
+                                
                                 <div class="text-md font-weight-bold text-success text-uppercase mb-1">Total Feedback Positif</div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
