@@ -287,7 +287,16 @@ class Schedule extends CI_Controller
         $idmhs = $this->input->post('idmhs');
         $this->m_schedule->deletemhs($idmhs);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Akun berhasil dihapus! </div>');
+            Data Member Berhasil dihapus! </div>');
+        redirect('schedule/atur/' . $id);
+    }
+
+    public function deleteallmhs($id)
+    {
+        check_event($id);
+        $this->m_schedule->deleteallmhs($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Data Member Berhasil dihapus! </div>');
         redirect('schedule/atur/' . $id);
     }
 

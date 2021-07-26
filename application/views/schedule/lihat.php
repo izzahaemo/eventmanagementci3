@@ -81,7 +81,7 @@
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h6 class="m-0 font-weight-bold text-primary">Data Schedule <?= $event['nama'] ?></h6>
-                <a href="<?= base_url('schedule/printschedulep/') . $idevent ?>" class="btn btn-success btn-icon-split ">
+                <a href="<?= base_url('schedule/printschedulep/') . $idevent ?>" class="btn btn-primary btn-icon-split ">
                     <span class="icon text-white-50">
                         <i class="fas fa-print"></i>
                     </span>

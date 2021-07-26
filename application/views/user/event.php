@@ -10,7 +10,7 @@
         </ol>
     </nav>
 
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         <?= $this->session->flashdata('message'); ?>
     </div>
 
@@ -151,6 +151,7 @@
                                 <input type="text" class="form-control" id="codeanggota" name="codeanggota" value="<?= set_value('codeanggota'); ?>" required>
                                 <div id="no_telp" class="form-text">Code Untuk Menambahkan Anggota (Dilarang Menggunakan Spasi)</div>
                                 <div id="no_telp" class="form-text">Contoh : telyufest21</div>
+                                <?= form_error('Codeanggota', '<small class="text-danger pl-2">', '</small>') ?>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -159,6 +160,7 @@
                                 <input type="text" class="form-control" id="codefeedback" name="codefeedback" value="<?= set_value('codefeedback'); ?>" required>
                                 <div id="no_telp" class="form-text">Code Untuk Menambahkan Feedback (Jangan Menggunakan Spasi) boleh sama dengan diatas</div>
                                 <div id="no_telp" class="form-text">Contoh : telyufest21</div>
+                                <?= form_error('Codefeedback', '<small class="text-danger pl-2">', '</small>') ?>
                             </div>
                         </div>
                     </div>

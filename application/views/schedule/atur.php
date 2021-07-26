@@ -51,21 +51,39 @@
                 }
             endforeach;
         ?>
-            <div class="col-md-3 mb-4">
-                <div class="card border-bottom-info shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-md font-weight-bold text-info text-uppercase mb-1">Total Divisi <?= $d['nama'] ?></div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $totaladivisi ?></div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-<?= $d['icon'] ?> fa-2x text-gray-300"></i>
+            <?php if ($totaladivisi != 0) { ?>
+                <div class="col-md-3 mb-4">
+                    <div class="card border-bottom-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-md font-weight-bold text-info text-uppercase mb-1">Total Divisi <?= $d['nama'] ?></div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $totaladivisi ?></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-<?= $d['icon'] ?> fa-2x text-gray-300"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php } else { ?>
+                <div class="col-md-3 mb-4">
+                    <div class="card border-bottom-danger shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-md font-weight-bold text-danger text-uppercase mb-1">Divisi <?= $d['nama'] ?></div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Tambahkan Anggota Divisi</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-<?= $d['icon'] ?> fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
         <?php endforeach; ?>
     </div>
 
@@ -75,7 +93,13 @@
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h6 class="m-0 font-weight-bold text-primary">Data Member <?= $event['nama'] ?></h6>
-                <a href="<?= base_url('schedule/printmhs/') . $idevent ?>" class="btn btn-success btn-icon-split ">
+                <a href="<?= base_url('schedule/addmhs/') . $idevent ?>" class="btn btn-success btn-icon-split ">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-user-plus"></i>
+                    </span>
+                    <span class="text">Tambahkan Data Member</span>
+                </a>
+                <a href="<?= base_url('schedule/printmhs/') . $idevent ?>" class="btn btn-primary btn-icon-split ">
                     <span class="icon text-white-50">
                         <i class="fas fa-print"></i>
                     </span>
@@ -107,43 +131,15 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php $i = 1; ?>
+                        <?php $i = 1;
+                        $z = 0; ?>
                         <?php foreach ($mhs as $a) :
                             if ($a['ide'] == $idevent) {
                         ?>
                                 <tr>
                                     <td><?= $i ?></td>
                                     <td><?= $a['name']; ?></td>
-                                    <td>
-                                        <?php
-                                        $handphone = $a['no_telp'];
-                                        // menghitung jumlah digit nomor handphone tanpa kode negara (+62)
-                                        $jumlah_digit_handphone = strlen($handphone);
-                                        // nomor handphone yang ditampilkan jika berjumlah 9 digit
-                                        if ($jumlah_digit_handphone == 9) {
-                                            $tampil_handphone = "+62 " . substr($handphone, 0, 3) . "-" . substr($handphone, 3, 3) . "-" . substr($handphone, 6, 3);
-                                        }
-                                        // nomor handphone yang ditampilkan jika berjumlah 10 digit
-                                        if ($jumlah_digit_handphone == 10) {
-                                            $tampil_handphone = "+62 " . substr($handphone, 3, 3) . "-" . substr($handphone, 6, 4) . "-" . substr($handphone, 10, 3);
-                                        }
-                                        // nomor handphone yang ditampilkan jika berjumlah 11 digit
-                                        if ($jumlah_digit_handphone == 11) {
-                                            $tampil_handphone = "+62 " . substr($handphone, 0, 3) . "-" . substr($handphone, 3, 4) . "-" . substr($handphone, 7, 3);
-                                        }
-                                        // nomor handphone yang ditampilkan jika berjumlah 12 digit
-                                        if ($jumlah_digit_handphone == 12) {
-                                            $tampil_handphone = "+62 " . substr($handphone, 3, 3) . "-" . substr($handphone, 6, 4) . "-" . substr($handphone, 10, 5);
-                                        }
-                                        if ($jumlah_digit_handphone < 9) {
-                                            $tampil_handphone = $handphone;
-                                        }
-                                        if ($jumlah_digit_handphone > 12) {
-                                            $tampil_handphone = $handphone;
-                                        }
-                                        ?>
-                                        <?= $tampil_handphone ?>
-                                    </td>
+                                    <td><?= $a['no_telp']; ?></td>
                                     <td>
                                         <?= $a['nama']; ?>
                                     </td>
@@ -170,6 +166,7 @@
                                     </td>
                                 </tr>
                             <?php $i++;
+                                $z = 1;
                             } ?>
                         <?php endforeach; ?>
                     </tbody>
@@ -193,20 +190,22 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mb-4">
-            <div class="card border-bottom-success shadow h-100 py-2">
-                <a href="<?= base_url('schedule/addmhs/') . $idevent ?>" class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="h5 mb-0 text-uppercase font-weight-bold text-success">Tambahkan Data Member</div>
+        <?php if ($z != 0) { ?>
+            <div class="col-md-6 mb-4">
+                <div class="card border-bottom-danger shadow h-100 py-2">
+                    <a href="" class="card-body" data-toggle="modal" data-target="#deleteall">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="h5 mb-0 text-uppercase font-weight-bold text-danger">Hapus Seluruh Member </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-trash fa-2x text-gray-300"></i>
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-user-plus fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
-        </div>
+        <?php } ?>
     </div>
 </div>
 <!-- /.container-fluid -->
@@ -328,6 +327,36 @@ foreach ($mhs as $a) :
                     <div class="modal-body">
                         <div class="form-group">
                             <h5>Anda yakin hapus akun ini? <?= $a['name']; ?></h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="idmhs" value="<?= $a['id'] ?>">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+
+<!-- modal deleteall-->
+<?php
+foreach ($mhs as $a) :
+?>
+    <div class="modal fade" id="deleteall" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteLabel">Hapus Data Member <?= $event['nama'] ?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <form action="<?= base_url('schedule/deleteallmhs/' . $idevent) ?>" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <h5>Anda Yakin Hapus Seluruh Member <?= $event['nama'] ?>? </h5>
                         </div>
                     </div>
                     <div class="modal-footer">

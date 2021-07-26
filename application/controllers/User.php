@@ -135,51 +135,98 @@ class User extends CI_Controller
         $data['lastevent'] = $this->m_event->lastevent();
         $lastid = $data['lastevent'][0]['id'] + 1;
 
-        $isinya = [
-            'id' => $lastid,
-            'idu' => $id,
-            'nama' => $this->input->post('nama'),
-            'penyelenggara' => $this->input->post('penyelenggara'),
-            'tempat' => $this->input->post('tempat'),
-            'inorout' => $this->input->post('inorout'),
-            'target' => $this->input->post('target'),
-            'budget' => $this->input->post('budget'),
-            'codeanggota' => $this->input->post('codeanggota'),
-            'codefeedback' => $this->input->post('codefeedback')
-        ];
-        $this->m_event->addevent($isinya);
+        $this->form_validation->set_rules('codeanggota', 'Codeanggota', 'required|is_unique[event.codeanggota]', [
+            'required' => 'ID harus di isi!',
+            'is_unique' => 'Kode Anggota Sudah Digunakan'
+        ]);
 
-        foreach ($data['divisi'] as $d) :
+        $this->form_validation->set_rules('codefeedback', 'Codefeedback', 'required|is_unique[event.codefeedback]', [
+            'required' => 'ID harus di isi!',
+            'is_unique' => 'Kode Feedback Sudah Digunakan'
+        ]);
 
-            $isinya2 = [
-                'ide' => $lastid,
-                'idd' => $d['id']
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Kode Anggota/Feedback Sudah Digunakan, Silihkan Coba Lagi</div>');
+            redirect('user/event/');
+        } else {
+
+            $isinya = [
+                'id' => $lastid,
+                'idu' => $id,
+                'nama' => $this->input->post('nama'),
+                'penyelenggara' => $this->input->post('penyelenggara'),
+                'tempat' => $this->input->post('tempat'),
+                'inorout' => $this->input->post('inorout'),
+                'target' => $this->input->post('target'),
+                'budget' => $this->input->post('budget'),
+                'codeanggota' => $this->input->post('codeanggota'),
+                'codefeedback' => $this->input->post('codefeedback')
             ];
-            $this->m_budget->addbudget($isinya2);
-        endforeach;
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            $this->m_event->addevent($isinya);
+
+            foreach ($data['divisi'] as $d) :
+
+                $isinya2 = [
+                    'ide' => $lastid,
+                    'idd' => $d['id']
+                ];
+                $this->m_budget->addbudget($isinya2);
+            endforeach;
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 Data Event Berhasil Di Input! </div>');
-        redirect('user/event/');
+            redirect('user/event/');
+        }
     }
+
     public function editevent()
     {
         $id = $this->input->post('ide');
         check_event($id);
-        $isinya = [
-            'nama' => $this->input->post('nama'),
-            'penyelenggara' => $this->input->post('penyelenggara'),
-            'tempat' => $this->input->post('tempat'),
-            'inorout' => $this->input->post('inorout'),
-            'target' => $this->input->post('target'),
-            'budget' => $this->input->post('budget'),
-            'codeanggota' => $this->input->post('codeanggota'),
-            'codefeedback' => $this->input->post('codefeedback')
-        ];
-        $this->m_event->editevent($id, $isinya);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+        $data['event'] = $this->m_event->eventone($id);
+        $anggota = $this->input->post('codeanggota');
+        $feedback = $this->input->post('codefeedback');
+        if ($data['event']['codeanggota'] != $anggota) {
+            $this->form_validation->set_rules('codeanggota', 'Codeanggota', 'required|is_unique[event.codeanggota]', [
+                'required' => 'ID harus di isi!',
+                'is_unique' => 'Kode Anggota Sudah Digunakan'
+            ]);
+        }
+
+        if ($data['event']['codefeedback'] != $feedback) {
+            $this->form_validation->set_rules('codefeedback', 'Codefeedback', 'required|is_unique[event.codefeedback]', [
+                'required' => 'ID harus di isi!',
+                'is_unique' => 'Kode Anggota Sudah Digunakan'
+            ]);
+        }
+
+        $this->form_validation->set_rules('nama', 'nama', 'required', [
+            'required' => 'ID harus di isi!'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Kode Anggota/Feedback Sudah Digunakan, Silahkan Coba Lagi</div>');
+            redirect('user/event/');
+        } else {
+
+            $isinya = [
+                'nama' => $this->input->post('nama'),
+                'penyelenggara' => $this->input->post('penyelenggara'),
+                'tempat' => $this->input->post('tempat'),
+                'inorout' => $this->input->post('inorout'),
+                'target' => $this->input->post('target'),
+                'budget' => $this->input->post('budget'),
+                'codeanggota' => $this->input->post('codeanggota'),
+                'codefeedback' => $this->input->post('codefeedback')
+            ];
+            $this->m_event->editevent($id, $isinya);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Data Event berhasil di perbarui</div>');
-        redirect('user/event/');
+            redirect('user/event/');
+        }
     }
+
     public function deleteevent()
     {
         $id = $this->input->post('ide');

@@ -64,6 +64,12 @@ class M_schedule extends CI_Model
         return $hasil;
     }
 
+    public function deleteallmhs($id)
+    {
+        $query = "DELETE FROM `data_mhs` WHERE `data_mhs`.`ide` = $id ";
+        return $this->db->query($query);
+    }
+
     public function schedule_on($idwhere)
     {
         $query = "  SELECT * FROM `schedule_on`

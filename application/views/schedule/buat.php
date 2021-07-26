@@ -16,7 +16,7 @@
         $totalschedule = $totalschedule + 1;
     endforeach; ?>
 
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         <div class="col-md-6 mb-4">
             <div class="card border-bottom-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -32,20 +32,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mb-4">
-            <div class="card border-bottom-success shadow h-100 py-2">
-                <a href="<?= base_url('schedule/addscheduleo/') . $idevent ?>" class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="h5 mb-0 text-uppercase font-weight-bold text-success">Tambahkan Schedule</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar-check fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
     </div>
 
     <!--Main Content -->
@@ -57,11 +43,17 @@
         <div class="card-header py-3">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h6 class="m-0 font-weight-bold text-primary">Data Event Schedule <?= $event['nama'] ?></h6>
-                <a href="<?= base_url('schedule/printscheduleo/') . $idevent ?>" class="btn btn-success btn-icon-split ">
+                <a href="<?= base_url('schedule/addscheduleo/') . $idevent ?>" class="btn btn-success btn-icon-split ">
                     <span class="icon text-white-50">
-                        <i class="fas fa-print"></i>
+                        <i class="fas fa-calendar-plus"></i>
                     </span>
-                    <span class="text">Print Data Event Schedule</span>
+                    <span class="text">Tambahkan Schedule</span>
+                    <a href="<?= base_url('schedule/printscheduleo/') . $idevent ?>" class="btn btn-primary btn-icon-split ">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-print"></i>
+                        </span>
+                        <span class="text">Print Data Event Schedule</span>
+                    </a>
                 </a>
             </div>
         </div>

@@ -67,7 +67,9 @@ class Auth extends CI_Controller
         $this->goToDefaultPage();
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         //
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+            'is_unique' => 'Email Sudah Di Guanakan'
+        ]);
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
             'matches' => 'Password tidak sama',
             'min_length' => 'Password terlalu Pendek'
@@ -113,8 +115,9 @@ class Auth extends CI_Controller
                 'crlf'    => "\r\n",
                 'newline' => "\r\n"
             ];
-            
+
             $edit_email =  $this->input->post('email', true);
+            $name = htmlspecialchars($this->input->post('name', true));
             $this->load->library('email', $config);
             $this->email->from('emapp.no.reply@gmail.com', 'Event Management APP');
             $this->email->to($edit_email);
