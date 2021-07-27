@@ -40,6 +40,10 @@
                                     <div class="text-center">
                                         <a class="btn btn-info btn-user btn-block" href="<?= base_url('auth/registration'); ?>">Buat akun baru!</a>
                                     </div>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="btn btn-warning btn-user btn-block" href="<?= base_url('auth/forgotpassword'); ?>">Forgot Password?</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

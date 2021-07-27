@@ -146,17 +146,11 @@ class Admin extends CI_Controller
 
     public function delete()
     {
-        $idkelas = $this->input->post('idkelas');
         $iduser = $this->input->post('iduser');
-        $this->m_kelas->kurang_total($idkelas);
-        $data = $this->m_user->select_user($iduser);
-        if ($data['is_active'] == 1) {
-            $this->m_kelas->kurang_aktif($idkelas);
-        }
         $this->m_user->delete_user($iduser);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Akun berhasil dihapus! </div>');
-        redirect('admin/kelas/' . $idkelas);
+        redirect('admin/account/');
     }
 
     public function item()
