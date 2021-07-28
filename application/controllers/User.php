@@ -233,7 +233,7 @@ class User extends CI_Controller
         check_event($id);
         $this->m_event->deleteevent($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Schedule berhasil Di Hapus </div>');
+            Event berhasil Di Hapus </div>');
         redirect('user/event/' . $id);
     }
 
